@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySantan - Usman Ali Food Manufacturing | Pembekal Santan Segar Premium</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display / Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            500: '#059669',
+                            800: '#065F46',
+                            900: '#064E3B',
+                            dark: '#022C22',
+                            gold: '#D97706',
+                            goldlight: '#F59E0B',
+                            bglight: '#FAFAF5',
+                            cardbg: '#FFFFFF',
+                            slateborder: '#E2E8F0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-pattern {
+            background: linear-gradient(135deg, #022C22 0%, #064E3B 60%, #047857 100%);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .subtle-shadow {
+            box-shadow: 0 10px 30px -5px rgba(6, 78, 59, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        }
+        .pro-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .pro-card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px -10px rgba(6, 78, 59, 0.12);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-brand-bglight antialiased flex flex-col min-h-screen">
+
+    <!-- MAIN EXECUTIVE HEADER -->
+    <header class="bg-white sticky top-0 z-40 border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                
+                <!-- Corporate Branding -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-900 to-brand-dark text-brand-goldlight flex items-center justify-center font-black text-2xl shadow-md border border-emerald-700/50">
+                        M
+                    </div>
+                    <div>
+                        <span class="font-heading font-black text-2xl text-brand-900 tracking-tight leading-none block">MySantan</span>
+                        <span class="text-[10px] font-bold text-slate-500 tracking-wider uppercase block mt-0.5">Usman Ali Food Manufacturing</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex items-center space-x-1 font-heading text-sm font-semibold text-slate-700">
+                    <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-4 py-2.5 rounded-xl text-brand-900 bg-emerald-50/80 font-bold transition" data-i18n="nav-home">
+                        Utama
+                    </button>
+                    <button onclick="switchPage('profile')" id="nav-profile" class="nav-btn px-4 py-2.5 rounded-xl hover:text-brand-900 hover:bg-slate-100/70 transition" data-i18n="nav-profile">
+                        Profil Syarikat
+                    </button>
+                    <button onclick="switchPage('products')" id="nav-products" class="nav-btn px-4 py-2.5 rounded-xl hover:text-brand-900 hover:bg-slate-100/70 transition" data-i18n="nav-products">
+                        Katalog Produk
+                    </button>
+                    <button onclick="switchPage('distributor')" id="nav-distributor" class="nav-btn px-4 py-2.5 rounded-xl hover:text-brand-900 hover:bg-slate-100/70 transition" data-i18n="nav-distributor">
+                        Peluang Ejen & Borong
+                    </button>
+                    <button onclick="switchPage('contact')" id="nav-contact" class="nav-btn px-4 py-2.5 rounded-xl hover:text-brand-900 hover:bg-slate-100/70 transition" data-i18n="nav-contact">
+                        Hubungi Kami
+                    </button>
+                </nav>
+
+                <!-- Header Action & Language Switcher -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <!-- Language Selector Button -->
+                    <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 font-bold text-xs">
+                        <button id="lang-bm" onclick="setLanguage('bm')" class="px-2.5 py-1 rounded-lg transition bg-brand-900 text-white shadow-sm">BM</button>
+                        <button id="lang-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded-lg transition text-slate-600 hover:text-brand-900">ENG</button>
+                    </div>
+
+                    <button onclick="openWhatsAppModal('Pertanyaan Laman Web')" class="bg-brand-900 hover:bg-brand-dark text-white font-bold px-5 py-2.5 rounded-xl transition shadow-sm hover:shadow flex items-center space-x-2 text-sm">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                        <span data-i18n="btn-whatsapp">Hubungi WhatsApp</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Hamburger & Language Button -->
+                <div class="flex items-center space-x-2 lg:hidden">
+                    <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 font-bold text-xs">
+                        <button id="lang-bm-mob" onclick="setLanguage('bm')" class="px-2 py-1 rounded-lg transition bg-brand-900 text-white">BM</button>
+                        <button id="lang-en-mob" onclick="setLanguage('en')" class="px-2 py-1 rounded-lg transition text-slate-600">ENG</button>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-brand-900 p-2.5 rounded-xl hover:bg-slate-100 focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 py-4 space-y-2 shadow-2xl">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-brand-900 font-bold bg-emerald-50">
+                <i class="fa-solid fa-house w-6 text-brand-500"></i> <span data-i18n="nav-home">Utama</span>
+            </button>
+            <button onclick="switchPage('profile'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50">
+                <i class="fa-solid fa-building w-6 text-slate-400"></i> <span data-i18n="nav-profile">Profil Syarikat</span>
+            </button>
+            <button onclick="switchPage('products'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50">
+                <i class="fa-solid fa-box-open w-6 text-slate-400"></i> <span data-i18n="nav-products">Katalog Produk</span>
+            </button>
+            <button onclick="switchPage('distributor'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50">
+                <i class="fa-solid fa-handshake w-6 text-slate-400"></i> <span data-i18n="nav-distributor">Peluang Ejen & Borong</span>
+            </button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50">
+                <i class="fa-solid fa-location-dot w-6 text-slate-400"></i> <span data-i18n="nav-contact">Hubungi Kami</span>
+            </button>
+            <div class="pt-2">
+                <button onclick="openWhatsAppModal('Mesej Navigasi Mobile'); toggleMobileMenu();" class="w-full bg-brand-900 text-white font-bold py-3 rounded-xl flex items-center justify-center space-x-2 shadow">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                    <span data-i18n="btn-whatsapp-officer">Hubungi Pegawai WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY CONTENT -->
+    <main class="flex-grow">
+
+        <!-- ========================================== -->
+        <!-- 1. HOME PAGE                               -->
+        <!-- ========================================== -->
+        <div id="page-home" class="tab-content active">
+            
+            <!-- Professional Hero Section -->
+            <section class="hero-pattern text-white relative overflow-hidden py-20 lg:py-28">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        
+                        <!-- Left Hero Column -->
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            
+                            <div class="inline-flex items-center space-x-2 bg-white/10 border border-white/15 px-4 py-1.5 rounded-full backdrop-blur-md">
+                                <i class="fa-solid fa-award text-brand-goldlight text-sm"></i>
+                                <span class="text-xs font-bold tracking-wider uppercase text-emerald-100" data-i18n="hero-badge">Kualiti Pemprosesan Industri Terjamin</span>
+                            </div>
+
+                            <h1 class="font-heading text-4xl sm:text-6xl font-black leading-tight tracking-tight">
+                                <span data-i18n="hero-title1">Bekalan Santan Segar</span> <br/>
+                                <span class="text-brand-goldlight" data-i18n="hero-title2">100% Asli & Tulen</span>
+                            </h1>
+
+                            <p class="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed" data-i18n="hero-desc">
+                                Dikeluarkan secara khusus oleh Usman Ali Food Manufacturing untuk memenuhi piawaian tinggi masakan komersial, katering majlis, serta keperluan kegunaan isi rumah di seluruh Malaysia.
+                            </p>
+
+                            <!-- CTAs -->
+                            <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start pt-4 font-heading">
+                                <button onclick="switchPage('products')" class="bg-brand-gold hover:bg-amber-600 text-white font-black px-8 py-4 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                                    <span data-i18n="hero-btn-catalog">Terokai Katalog Produk</span>
+                                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                                </button>
+                                <button onclick="switchPage('distributor')" class="bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl border border-white/25 backdrop-blur transition flex items-center justify-center space-x-2">
+                                    <i class="fa-solid fa-handshake-simple"></i>
+                                    <span data-i18n="hero-btn-program">Program Pengedar & Borong</span>
+                                </button>
+                            </div>
+
+                            <!-- Trust Metric Badges -->
+                            <div class="pt-8 grid grid-cols-3 gap-4 border-t border-white/10 max-w-lg mx-auto lg:mx-0">
+                                <div class="text-center lg:text-left">
+                                    <span class="font-heading font-black text-2xl text-white block">100%</span>
+                                    <span class="text-[11px] text-slate-300 uppercase tracking-wider font-medium" data-i18n="stat-pure">Perahan Tulen</span>
+                                </div>
+                                <div class="text-center lg:text-left">
+                                    <span class="font-heading font-black text-2xl text-brand-goldlight block" data-i18n="stat-no">Tanpa</span>
+                                    <span class="text-[11px] text-slate-300 uppercase tracking-wider font-medium" data-i18n="stat-preservatives">Pengawet Tiruan</span>
+                                </div>
+                                <div class="text-center lg:text-left">
+                                    <span class="font-heading font-black text-2xl text-white block" data-i18n="stat-daily">Harian</span>
+                                    <span class="text-[11px] text-slate-300 uppercase tracking-wider font-medium" data-i18n="stat-fresh">Pengeluaran Segar</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Right Hero Feature Card -->
+                        <div class="lg:col-span-5 flex justify-center">
+                            <div class="w-full max-w-md bg-white text-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-100 relative">
+                                
+                                <div class="flex items-center justify-between pb-6 border-b border-slate-100 mb-6">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-brand-900 flex items-center justify-center font-black text-xl">
+                                            <i class="fa-solid fa-shield-halved"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-heading font-bold text-base text-brand-900" data-i18n="hero-card-title">Jaminan Keaslian</h3>
+                                            <p class="text-[11px] text-slate-500">Usman Ali Food Mfg.</p>
+                                        </div>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase" data-i18n="hero-card-badge">Gred Premium</span>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3.5">
+                                        <i class="fa-solid fa-circle-check text-brand-500 text-lg mt-0.5"></i>
+                                        <div>
+                                            <h4 class="font-bold text-xs text-slate-900" data-i18n="hero-card-f1-title">Pati Perahan Pertama</h4>
+                                            <p class="text-xs text-slate-500 mt-0.5" data-i18n="hero-card-f1-desc">Mengekalkan tekstur pekat, lemak semula jadi, dan aroma harum kelapa.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-3.5">
+                                        <i class="fa-solid fa-circle-check text-brand-500 text-lg mt-0.5"></i>
+                                        <div>
+                                            <h4 class="font-bold text-xs text-slate-900" data-i18n="hero-card-f2-title">Kawalan Mutu Higienis</h4>
+                                            <p class="text-xs text-slate-500 mt-0.5" data-i18n="hero-card-f2-desc">Diperas dan dibungkus dalam persekitaran sanitasi kilang yang ketat.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start space-x-3.5">
+                                        <i class="fa-solid fa-circle-check text-brand-500 text-lg mt-0.5"></i>
+                                        <div>
+                                            <h4 class="font-bold text-xs text-slate-900" data-i18n="hero-card-f3-title">Pembekalan Berkesinambungan</h4>
+                                            <p class="text-xs text-slate-500 mt-0.5" data-i18n="hero-card-f3-desc">Ketersediaan stok yang konsisten bagi pengusaha restoran & katerer.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 pt-6 border-t border-slate-100 bg-slate-50 -mx-8 -mb-8 p-6 rounded-b-3xl flex items-center justify-between">
+                                    <span class="text-xs text-slate-600 font-semibold" data-i18n="hero-card-ask">Perlukan sebut harga pukal?</span>
+                                    <button onclick="openWhatsAppModal('Pertanyaan Pukal Hero')" class="text-xs font-bold text-brand-900 hover:text-brand-gold flex items-center space-x-1">
+                                        <span data-i18n="hero-card-chat">Bincang WhatsApp</span>
+                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Corporate Values & Standards Section -->
+            <section class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-brand-gold font-extrabold text-xs uppercase tracking-widest bg-amber-50 px-3.5 py-1.5 rounded-full border border-amber-200/60">Standard Pemprosesan</span>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-black text-brand-900 mt-3">Mengapa Menggunakan Produk MySantan?</h2>
+                        <p class="text-slate-600 text-sm sm:text-base mt-2">Komitmen mutu yang membezakan kepekatan dan ketahanan produk keluaran kilang kami.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <div class="bg-brand-bglight p-8 rounded-3xl border border-slate-200/80 subtle-shadow pro-card-hover">
+                            <div class="w-12 h-12 bg-brand-900 text-brand-goldlight rounded-2xl flex items-center justify-center text-xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-brand-900 mb-2">Kelapa Terpilih 100% Segar</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Hanya buah kelapa matang berkualiti tinggi diproses untuk menghasilkan pati santan asli tanpa sebarang penambahan bahan sintetik.
+                            </p>
+                        </div>
+
+                        <div class="bg-brand-bglight p-8 rounded-3xl border border-slate-200/80 subtle-shadow pro-card-hover">
+                            <div class="w-12 h-12 bg-brand-gold text-white rounded-2xl flex items-center justify-center text-xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-temperature-arrow-down"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-brand-900 mb-2">Rantaian Sejuk Terpelihara</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Pengendalian suhu dari kilang hingga ke pusat pengedaran bagi memastikan kesegaran optimum tanpa menjejaskan rasa semula jadi.
+                            </p>
+                        </div>
+
+                        <div class="bg-brand-bglight p-8 rounded-3xl border border-slate-200/80 subtle-shadow pro-card-hover">
+                            <div class="w-12 h-12 bg-emerald-700 text-white rounded-2xl flex items-center justify-center text-xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-brand-900 mb-2">Piawaian Kebersihan Kebangsaan</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Selaras dengan amalan pembuatan yang bersih (GMP) untuk memberikan ketenangan fikiran bagi pengusaha makanan komersial.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 2. COMPANY PROFILE PAGE                    -->
+        <!-- ========================================== -->
+        <div id="page-profile" class="tab-content">
+            
+            <section class="bg-brand-900 text-white py-16 border-b border-emerald-950">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <span class="text-brand-goldlight text-xs font-extrabold uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full border border-white/10">Profil Syarikat</span>
+                    <h1 class="font-heading text-4xl sm:text-5xl font-black mt-4">Usman Ali Food Manufacturing</h1>
+                    <p class="text-slate-300 max-w-2xl mx-auto mt-3 text-sm sm:text-base font-light">
+                        Peneraju dalam pembuatan dan pembekalan produk perahan santan kelapa tulen untuk industri makanan negara.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+                        
+                        <div class="lg:col-span-7 space-y-6">
+                            <span class="text-brand-gold font-extrabold text-xs uppercase tracking-widest">Mengenai Syarikat</span>
+                            <h2 class="font-heading text-3xl font-black text-brand-900">Komitmen Keaslian Dari Kilang Ke Dapur Anda</h2>
+                            
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                **Usman Ali Food Manufacturing Sdn. Bhd.** diasaskan dengan visi untuk menyediakan bekalan santan segar yang suci, berkualiti tinggi, dan konsisten bagi pasaran tempatan. Melalui jenama utama kami, **MySantan**, kami komited untuk mengekalkan mutu keaslian pati kelapa tempatan tanpa kompromi.
+                            </p>
+                            
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Kilang pengeluaran kami dilengkapi dengan sistem pemprosesan terkini yang mematuhi amalan kebersihan ketat, memastikan setiap titisan santan MySantan menyampaikan rasa lemak asli dan aroma yang memikat untuk pelbagai masakan tradisional dan komersial.
+                            </p>
+
+                            <div class="pt-4 grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded-2xl bg-brand-bglight border border-slate-200">
+                                    <h4 class="font-heading font-black text-2xl text-brand-900">Pati Tulen</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Perahan pertama kelapa segar</p>
+                                </div>
+                                <div class="p-4 rounded-2xl bg-brand-bglight border border-slate-200">
+                                    <h4 class="font-heading font-black text-2xl text-brand-gold">Suci & Bersih</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Kawalan kebersihan yang terjamin</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Corporate Image / Visual Block -->
+                        <div class="lg:col-span-5">
+                            <div class="bg-brand-900 text-white p-8 rounded-3xl shadow-xl relative overflow-hidden border border-emerald-800">
+                                <div class="absolute -right-10 -top-10 w-40 h-40 bg-brand-gold/20 rounded-full blur-xl"></div>
+                                <h3 class="font-heading text-2xl font-bold text-brand-goldlight mb-4">Teras Kebanggaan Kami</h3>
+                                <ul class="space-y-4 text-sm text-slate-200 font-light">
+                                    <li class="flex items-start space-x-3">
+                                        <i class="fa-solid fa-check text-brand-goldlight mt-1"></i>
+                                        <span>Penggunaan 100% buah kelapa terpilih dari peraih tempatan yang berwibawa.</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <i class="fa-solid fa-check text-brand-goldlight mt-1"></i>
+                                        <span>Bebas daripada sebarang bahan pengawet tiruan atau pewarna tambahan.</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <i class="fa-solid fa-check text-brand-goldlight mt-1"></i>
+                                        <span>Proses pembungkusan kedap udara bagi mengekalkan kesegaran semula jadi.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Vision & Mission Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-slate-100">
+                        <div class="bg-brand-bglight p-8 rounded-3xl border border-slate-200/80">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-900 text-white flex items-center justify-center font-bold text-xl mb-4">
+                                <i class="fa-solid fa-eye text-brand-goldlight"></i>
+                            </div>
+                            <h3 class="font-heading text-2xl font-bold text-brand-900 mb-2">Visi Syarikat</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Menjadi jenama pengeluar santan segar yang paling dipercayai di Malaysia, diiktiraf kerana ketulenan produk, inovasi pemprosesan, serta perkhidmatan pembekalan yang cemerlang.
+                            </p>
+                        </div>
+
+                        <div class="bg-brand-bglight p-8 rounded-3xl border border-slate-200/80">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-gold text-white flex items-center justify-center font-bold text-xl mb-4">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <h3 class="font-heading text-2xl font-bold text-brand-900 mb-2">Misi Syarikat</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Membekalkan santan segar berkualiti tinggi secara konsisten kepada perniagaan makanan dan pengguna, sambil memperkasakan rantaian pengedaran pengedar tempatan di seluruh daerah.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 3. PRODUCT CATALOGUE PAGE                  -->
+        <!-- ========================================== -->
+        <div id="page-products" class="tab-content">
+            
+            <section class="bg-brand-900 text-white py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <span class="text-brand-goldlight text-xs font-extrabold uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full border border-white/10">Rangkaian Produk</span>
+                    <h1 class="font-heading text-4xl sm:text-5xl font-black mt-4">Katalog Produk MySantan</h1>
+                    <p class="text-slate-300 max-w-xl mx-auto mt-2 text-sm">
+                        Pilihan santan perahan segar dalam pelbagai saiz pembungkusan untuk memadani kegunaan anda.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-20 bg-brand-bglight">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                        <!-- Product 1: Pek 1kg -->
+                        <div class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden subtle-shadow pro-card-hover flex flex-col">
+                            <div class="bg-gradient-to-b from-slate-50 to-emerald-50/50 h-60 flex items-center justify-center relative p-6 border-b border-slate-100">
+                                <span class="absolute top-4 left-4 bg-brand-900 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full">
+                                    Pilihan Popular Restoran
+                                </span>
+                                <!-- Custom SVG Representation for Professional Look -->
+                                <div class="w-36 h-44 bg-white border-2 border-brand-900 rounded-2xl flex flex-col items-center justify-between p-4 shadow-md">
+                                    <div class="w-full text-center border-b pb-2 border-slate-100">
+                                        <span class="font-heading font-black text-sm text-brand-900 tracking-tight block">MYSANTAN</span>
+                                        <span class="text-[9px] font-bold text-brand-gold uppercase">100% SEGAR</span>
+                                    </div>
+                                    <i class="fa-solid fa-bottle-droplet text-4xl text-brand-500 my-2"></i>
+                                    <span class="bg-brand-900 text-white font-black text-xs px-3 py-1 rounded-lg w-full text-center">1.0 KG</span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h3 class="font-heading font-bold text-xl text-brand-900 mb-1">MySantan Segar (Pek 1 KG)</h3>
+                                    <p class="text-xs font-bold text-emerald-700 mb-3"><i class="fa-solid fa-check-circle mr-1"></i> Pati Santan Pekat Tulen</p>
+                                    <p class="text-slate-600 text-sm leading-relaxed">
+                                        Saiz standard paling sesuai untuk kegunaan pengusaha kedai makan, katerer, dan penyediaan lauk-pauk perniagaan.
+                                    </p>
+                                </div>
+                                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                    <div>
+                                        <span class="text-[10px] uppercase font-bold text-slate-400 block">Kandungan</span>
+                                        <span class="font-heading font-black text-brand-900 text-lg">1,000 Gram</span>
+                                    </div>
+                                    <button onclick="openWhatsAppModal('Tempahan Pek 1kg MySantan')" class="bg-brand-900 hover:bg-brand-dark text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center space-x-1.5 shadow-sm">
+                                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                                        <span>Tempah Pek</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 2: Pek 500g -->
+                        <div class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden subtle-shadow pro-card-hover flex flex-col">
+                            <div class="bg-gradient-to-b from-slate-50 to-amber-50/50 h-60 flex items-center justify-center relative p-6 border-b border-slate-100">
+                                <span class="absolute top-4 left-4 bg-brand-gold text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full">
+                                    Dapur Isi Rumah
+                                </span>
+                                <div class="w-32 h-40 bg-white border-2 border-brand-gold rounded-2xl flex flex-col items-center justify-between p-4 shadow-md">
+                                    <div class="w-full text-center border-b pb-2 border-slate-100">
+                                        <span class="font-heading font-black text-sm text-brand-900 tracking-tight block">MYSANTAN</span>
+                                        <span class="text-[9px] font-bold text-brand-500 uppercase">ISIRUMAH</span>
+                                    </div>
+                                    <i class="fa-solid fa-box-open text-3xl text-brand-gold my-2"></i>
+                                    <span class="bg-brand-gold text-white font-black text-xs px-3 py-1 rounded-lg w-full text-center">500 Gram</span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h3 class="font-heading font-bold text-xl text-brand-900 mb-1">MySantan Segar (Pek 500 Gram)</h3>
+                                    <p class="text-xs font-bold text-brand-gold mb-3"><i class="fa-solid fa-house mr-1"></i> Praktikal & Mudah Disimpan</p>
+                                    <p class="text-slate-600 text-sm leading-relaxed">
+                                        Pembungkusan bersaiz sederhana khas untuk keperluan masakan keluarga tanpa pembaziran lebihan santan.
+                                    </p>
+                                </div>
+                                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                    <div>
+                                        <span class="text-[10px] uppercase font-bold text-slate-400 block">Kandungan</span>
+                                        <span class="font-heading font-black text-brand-900 text-lg">500 Gram</span>
+                                    </div>
+                                    <button onclick="openWhatsAppModal('Tempahan Pek 500g MySantan')" class="bg-brand-900 hover:bg-brand-dark text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center space-x-1.5 shadow-sm">
+                                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                                        <span>Tempah Pek</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 3: Pek Pukal Industri -->
+                        <div class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden subtle-shadow pro-card-hover flex flex-col">
+                            <div class="bg-gradient-to-b from-slate-100 to-slate-200/60 h-60 flex items-center justify-center relative p-6 border-b border-slate-100">
+                                <span class="absolute top-4 left-4 bg-slate-900 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full">
+                                    Pukal Industri
+                                </span>
+                                <div class="w-40 h-44 bg-brand-dark border-2 border-emerald-500 rounded-2xl flex flex-col items-center justify-between p-4 shadow-md text-white">
+                                    <div class="w-full text-center border-b pb-2 border-slate-700">
+                                        <span class="font-heading font-black text-xs text-brand-goldlight tracking-tight block">BULK SUPPLY</span>
+                                        <span class="text-[8px] font-bold text-emerald-400 uppercase">KILANG / KATERING</span>
+                                    </div>
+                                    <i class="fa-solid fa-cubes-stacked text-3xl text-emerald-400 my-1"></i>
+                                    <span class="bg-emerald-600 text-white font-black text-xs px-3 py-1 rounded-lg w-full text-center">10KG / CUSTOM</span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h3 class="font-heading font-bold text-xl text-brand-900 mb-1">Bekalan Pukal Komersial (10kg +)</h3>
+                                    <p class="text-xs font-bold text-slate-700 mb-3"><i class="fa-solid fa-industry mr-1"></i> Spesifikasi Custom Kilang</p>
+                                    <p class="text-slate-600 text-sm leading-relaxed">
+                                        Bekalan santan segar pukal mengikut formula & kepekatan khusus untuk kilang pembuatan pes serta pembekal katering besar.
+                                    </p>
+                                </div>
+                                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                    <div>
+                                        <span class="text-[10px] uppercase font-bold text-slate-400 block">Kandungan</span>
+                                        <span class="font-heading font-black text-brand-900 text-lg">10kg / Pukal</span>
+                                    </div>
+                                    <button onclick="openWhatsAppModal('Pertanyaan Pek Pukal Industri')" class="bg-brand-900 hover:bg-brand-dark text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center space-x-1.5 shadow-sm">
+                                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                                        <span>Sebut Harga Pukal</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 4. DISTRIBUTOR & BUSINESS PAGE             -->
+        <!-- ========================================== -->
+        <div id="page-distributor" class="tab-content">
+            
+            <section class="bg-brand-900 text-white py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <span class="text-brand-goldlight text-xs font-extrabold uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full border border-white/10">Program Rakan Niaga</span>
+                    <h1 class="font-heading text-4xl sm:text-5xl font-black mt-4">Peluang Ejen & Distributor Daerah</h1>
+                    <p class="text-slate-300 max-w-xl mx-auto mt-2 text-sm">
+                        Jadilah wakil pengedar rasmi Usman Ali Food Manufacturing di kawasan anda.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        
+                        <!-- Left Info & Profit Calculator -->
+                        <div class="lg:col-span-5 space-y-8">
+                            <div>
+                                <span class="text-brand-gold font-extrabold text-xs uppercase tracking-widest">Kelebihan Rakan Niaga</span>
+                                <h2 class="font-heading text-3xl font-black text-brand-900 mt-2">Mengapa Menyertai Rangkaian Pengedar MySantan?</h2>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-4 p-4 rounded-2xl bg-brand-bglight border border-slate-200">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-900 text-brand-goldlight font-bold flex items-center justify-center shrink-0 text-sm">
+                                        01
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-brand-900 text-sm">Harga Terus Dari Kilang</h4>
+                                        <p class="text-xs text-slate-600 mt-0.5">Mendapat margin keuntungan yang kukuh untuk edaran runcit dan borong.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4 p-4 rounded-2xl bg-brand-bglight border border-slate-200">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-900 text-brand-goldlight font-bold flex items-center justify-center shrink-0 text-sm">
+                                        02
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-brand-900 text-sm">Pasaran Keperluan Harian High-Demand</h4>
+                                        <p class="text-xs text-slate-600 mt-0.5">Santan adalah keperluan asas dapur yang dibeli secara berulang kali setiap hari.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4 p-4 rounded-2xl bg-brand-bglight border border-slate-200">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-900 text-brand-goldlight font-bold flex items-center justify-center shrink-0 text-sm">
+                                        03
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-brand-900 text-sm">Sokongan Logistik & Pemasaran</h4>
+                                        <p class="text-xs text-slate-600 mt-0.5">Jadual bekalan tetap dan sokongan promosi jenama di kawasan edaran anda.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Profit Estimator Card -->
+                            <div class="bg-gradient-to-br from-brand-900 to-brand-dark text-white p-6 rounded-3xl shadow-lg border border-emerald-800">
+                                <h4 class="font-heading font-bold text-lg text-brand-goldlight mb-2"><i class="fa-solid fa-calculator mr-2"></i> Pengira Anggaran Jualan Ejen</h4>
+                                <p class="text-xs text-slate-300 font-light mb-4">Anggaran potensi jualan berdasarkan kuantiti pek harian:</p>
+
+                                <div class="space-y-3">
+                                    <div>
+                                        <label class="block text-[11px] font-bold uppercase text-slate-300 mb-1">Sasaran Pek Disasar Sehari (Kg)</label>
+                                        <input type="number" id="calcKg" value="50" oninput="calculateProfit()" class="w-full px-3 py-2 rounded-xl text-slate-900 text-sm font-bold outline-none">
+                                    </div>
+                                    
+                                    <div class="p-3 rounded-xl bg-white/10 border border-white/10 flex justify-between items-center">
+                                        <span class="text-xs text-slate-300">Anggaran Profit / Bulan:</span>
+                                        <span id="profitOutput" class="font-heading font-black text-xl text-brand-goldlight">RM 1,500 - RM 2,250</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Application Form -->
+                        <div class="lg:col-span-7">
+                            <div class="bg-brand-bglight p-8 sm:p-10 rounded-3xl border border-slate-200/90 subtle-shadow">
+                                <h3 class="font-heading text-2xl font-black text-brand-900 mb-1">Borang Permohonan Ejen & Borong</h3>
+                                <p class="text-slate-600 text-xs mb-6">Sila isikan maklumat perniagaan anda untuk diproses oleh pasukan jualan Usman Ali Mfg.</p>
+
+                                <form onsubmit="handleDistributorSubmit(event)" class="space-y-4">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Penuh *</label>
+                                            <input type="text" id="distName" required placeholder="Cth: Ahmad Razali" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nombor WhatsApp *</label>
+                                            <input type="tel" id="distPhone" required placeholder="Cth: 0123456789" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kawasan / Daerah Sasaran *</label>
+                                            <input type="text" id="distArea" required placeholder="Cth: Shah Alam, Selangor" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kategori Permohonan *</label>
+                                            <select id="distType" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                                                <option value="Distributor Daerah Utama">Distributor Utama Daerah</option>
+                                                <option value="Ejen Pembekal Runcit Kedai">Ejen Pembekal Runcit Kedai</option>
+                                                <option value="Restoran & Katerer Pukal">Pengusaha Restoran & Katering</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Anggaran Kuantiti Santan (Kg / Seminggu)</label>
+                                        <input type="text" id="distVolume" placeholder="Cth: 150 kg seminggu" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Catatan / Mesej Tambahan</label>
+                                        <textarea id="distNotes" rows="3" placeholder="Nyatakan maklumat kedai atau perniagaan sedia ada anda..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white"></textarea>
+                                    </div>
+
+                                    <button type="submit" class="w-full bg-brand-900 hover:bg-brand-dark text-white font-bold py-4 rounded-xl transition shadow-md flex items-center justify-center space-x-2 text-sm">
+                                        <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                                        <span>Hantar Permohonan Ke WhatsApp Jualan</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 5. CONTACT US PAGE                         -->
+        <!-- ========================================== -->
+        <div id="page-contact" class="tab-content">
+            
+            <section class="bg-brand-900 text-white py-16 border-b border-emerald-950">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <span class="text-brand-goldlight text-xs font-extrabold uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full border border-white/10">Hubungi Syarikat</span>
+                    <h1 class="font-heading text-4xl sm:text-5xl font-black mt-4">Hubungi Usman Ali Food Mfg.</h1>
+                    <p class="text-slate-300 max-w-xl mx-auto mt-2 text-sm">
+                        Pertanyaan lokasi kilang, perkhidmatan talian pelanggan, serta maklum balas tempahan.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                        
+                        <div class="bg-brand-bglight p-8 rounded-3xl border border-slate-200/90 text-center flex flex-col items-center subtle-shadow">
+                            <div class="w-14 h-14 bg-brand-900 text-brand-goldlight rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm">
+                                <i class="fa-solid fa-industry"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-lg text-brand-900 mb-1">Alamat Kilang Pemprosesan</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                **Usman Ali Food Manufacturing Sdn. Bhd.**<br/>
+                                Lot Kilang Pemprosesan Santan Segar,<br/>
+                                Kawasan Perindustrian Utama, Malaysia.
+                            </p>
+                        </div>
+
+                        <div class="bg-brand-bglight p-8 rounded-3xl border border-slate-200/90 text-center flex flex-col items-center subtle-shadow">
+                            <div class="w-14 h-14 bg-brand-gold text-white rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-lg text-brand-900 mb-1">Talian Khidmat Pelanggan</h3>
+                            <p class="text-xs text-slate-600 mb-2">Telefon / WhatsApp: +60 12-345 6789</p>
+                            <span class="bg-emerald-100 text-emerald-900 font-bold text-[10px] px-3 py-1 rounded-full uppercase">Isnin - Sabtu (8.00 AM - 6.00 PM)</span>
+                        </div>
+
+                        <div class="bg-brand-bglight p-8 rounded-3xl border border-slate-200/90 text-center flex flex-col items-center subtle-shadow">
+                            <div class="w-14 h-14 bg-emerald-700 text-white rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm">
+                                <i class="fa-solid fa-envelope-open-text"></i>
+                            </div>
+                            <h3 class="font-heading font-bold text-lg text-brand-900 mb-1">E-mel Rasmi Syarikat</h3>
+                            <p class="text-xs text-slate-600">
+                                info@mysantan.com.my<br/>
+                                sales@mysantan.com.my
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- Direct Message Contact Form -->
+                    <div class="bg-brand-bglight p-8 sm:p-12 rounded-3xl border border-slate-200 max-w-3xl mx-auto subtle-shadow">
+                        <h3 class="font-heading text-2xl font-black text-brand-900 mb-2 text-center">Borang Pertanyaan Direct</h3>
+                        <p class="text-xs text-slate-600 mb-6 text-center">Tinggalkan soalan anda dan pihak wakil pemasaran akan menghubungi anda secepat mungkin.</p>
+
+                        <form onsubmit="handleGeneralContact(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Penuh</label>
+                                <input type="text" id="contactName" required placeholder="Nama anda" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nombor Telefon / E-mel</label>
+                                <input type="text" id="contactInfo" required placeholder="No. telefon atau e-mel" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Subjek Pertanyaan</label>
+                                <input type="text" id="contactSubject" placeholder="Cth: Pertanyaan Bekalan Katering Majlis" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Mesej Anda</label>
+                                <textarea id="contactMessage" rows="4" required placeholder="Tuliskan perincian pertanyaan anda di sini..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-900 hover:bg-brand-dark text-white font-bold py-3.5 rounded-xl transition shadow flex items-center justify-center space-x-2 text-sm">
+                                <i class="fa-solid fa-paper-plane text-brand-goldlight"></i>
+                                <span>Hantar Mesej Ke WhatsApp</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- FLOATING WHATSAPP WIDGET -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="openWhatsAppModal('Floating Button')" class="bg-brand-900 hover:bg-brand-dark text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition duration-300 transform hover:scale-105 border-2 border-emerald-400 group relative">
+            <i class="fa-brands fa-whatsapp text-3xl text-emerald-400"></i>
+            <span class="absolute right-full mr-3 bg-slate-900 text-white text-xs font-bold py-1.5 px-3 rounded-xl whitespace-nowrap shadow opacity-0 group-hover:opacity-100 transition duration-200">
+                Sembang Direct WhatsApp
+            </span>
+        </button>
+    </div>
+
+    <!-- WHATSAPP INTEGRATION MODAL -->
+    <div id="whatsappModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100">
+            
+            <!-- Modal Header -->
+            <div class="bg-brand-900 text-white p-6 flex justify-between items-center border-b border-emerald-800">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-800 flex items-center justify-center text-emerald-400 text-xl border border-emerald-600">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-base leading-tight">WhatsApp MySantan</h3>
+                        <p class="text-[11px] text-brand-goldlight">Usman Ali Food Manufacturing</p>
+                    </div>
+                </div>
+                <button onclick="closeWhatsAppModal()" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Options -->
+            <div class="p-6 space-y-3">
+                <p class="text-xs text-slate-500 mb-2">Pilih kategori pertanyaan untuk berhubung terus bersama pihak pengurusan:</p>
+
+                <button onclick="sendDirectWhatsApp('Salam, saya berminat untuk membuat tempahan Santan Segar MySantan.')" class="w-full text-left p-3.5 rounded-2xl border border-slate-200 hover:border-brand-500 hover:bg-emerald-50/50 transition flex items-center justify-between group">
+                    <div>
+                        <span class="font-bold text-xs text-slate-900 block">Pertanyaan Produk & Tempahan Runcit</span>
+                        <span class="text-[10px] text-slate-500">Pek 1kg, 500g, & Tempahan Harian</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-900"></i>
+                </button>
+
+                <button onclick="sendDirectWhatsApp('Salam, saya berminat untuk memohon sebagai Ejen / Distributor MySantan.')" class="w-full text-left p-3.5 rounded-2xl border border-slate-200 hover:border-brand-500 hover:bg-emerald-50/50 transition flex items-center justify-between group">
+                    <div>
+                        <span class="font-bold text-xs text-slate-900 block">Permohonan Ejen & Borong Pukal</span>
+                        <span class="text-[10px] text-slate-500">Program pengedar kawasan & katering</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-brand-900"></i>
+                </button>
+
+                <div class="pt-3 border-t border-slate-100">
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Mesej Tersendiri:</label>
+                    <div class="flex space-x-2">
+                        <input type="text" id="customWAMsg" placeholder="Taip mesej anda..." class="flex-grow px-3 py-2 text-xs border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-brand-500">
+                        <button onclick="sendCustomWhatsApp()" class="bg-brand-900 hover:bg-brand-dark text-white text-xs font-bold px-4 rounded-xl">
+                            Hantar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CORPORATE FOOTER -->
+    <footer class="bg-brand-dark text-slate-300 border-t border-emerald-950 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <!-- Brand Info -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-900 text-brand-goldlight flex items-center justify-center font-black text-lg border border-emerald-700">
+                            M
+                        </div>
+                        <span class="font-heading font-black text-xl text-white">MySantan</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed font-light">
+                        Jenama santan kelapa segar tulen terkemuka keluaran **Usman Ali Food Manufacturing Sdn. Bhd.** Menjamin kualiti terbaik untuk pasaran Malaysia.
+                    </p>
+                </div>
+
+                <!-- Page Navigation -->
+                <div>
+                    <h4 class="font-heading font-bold text-brand-goldlight text-xs uppercase tracking-wider mb-3">Pautan Pantas</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="switchPage('home')" class="hover:text-white transition">Utama</button></li>
+                        <li><button onclick="switchPage('profile')" class="hover:text-white transition">Profil Syarikat</button></li>
+                        <li><button onclick="switchPage('products')" class="hover:text-white transition">Katalog Produk</button></li>
+                        <li><button onclick="switchPage('distributor')" class="hover:text-white transition">Peluang Ejen & Borong</button></li>
+                        <li><button onclick="switchPage('contact')" class="hover:text-white transition">Hubungi Kami</button></li>
+                    </ul>
+                </div>
+
+                <!-- Product Summary -->
+                <div>
+                    <h4 class="font-heading font-bold text-brand-goldlight text-xs uppercase tracking-wider mb-3">Pilihan Produk</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li>MySantan Segar Pek 1 KG</li>
+                        <li>MySantan Segar Pek 500g</li>
+                        <li>Bekalan Santan Pukal 10kg+</li>
+                        <li>Pati Perahan Kelapa Segar</li>
+                    </ul>
+                </div>
+
+                <!-- Contact Summary -->
+                <div>
+                    <h4 class="font-heading font-bold text-brand-goldlight text-xs uppercase tracking-wider mb-3">Hubungi Usaha Usahawan</h4>
+                    <p class="text-xs text-slate-400 mb-2"><i class="fa-solid fa-phone text-brand-goldlight mr-2"></i> +60 12-345 6789</p>
+                    <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-envelope text-brand-goldlight mr-2"></i> info@mysantan.com.my</p>
+                    <div class="flex space-x-3 text-lg text-brand-goldlight">
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-emerald-950 mt-10 pt-6 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Usman Ali Food Manufacturing Sdn. Bhd. (MySantan). Hak Cipta Terpelihara.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // WhatsApp Target Phone Number
+        const TARGET_WHATSAPP_NUMBER = "60123456789";
+
+        // Multilingual Translations Dictionary (BM / ENG)
+        const i18nData = {
+            bm: {
+                "nav-home": "Utama",
+                "nav-profile": "Profil Syarikat",
+                "nav-products": "Katalog Produk",
+                "nav-distributor": "Peluang Ejen & Borong",
+                "nav-contact": "Hubungi Kami",
+                "btn-whatsapp": "Hubungi WhatsApp",
+                "btn-whatsapp-officer": "Hubungi Pegawai WhatsApp",
+                "hero-badge": "Kualiti Pemprosesan Industri Terjamin",
+                "hero-title1": "Bekalan Santan Segar",
+                "hero-title2": "100% Asli & Tulen",
+                "hero-desc": "Dikeluarkan secara khusus oleh Usman Ali Food Manufacturing untuk memenuhi piawaian tinggi masakan komersial, katering majlis, serta keperluan kegunaan isi rumah di seluruh Malaysia.",
+                "hero-btn-catalog": "Terokai Katalog Produk",
+                "hero-btn-program": "Program Pengedar & Borong",
+                "stat-pure": "Perahan Tulen",
+                "stat-no": "Tanpa",
+                "stat-preservatives": "Pengawet Tiruan",
+                "stat-daily": "Harian",
+                "stat-fresh": "Pengeluaran Segar",
+                "hero-card-title": "Jaminan Keaslian",
+                "hero-card-badge": "Gred Premium",
+                "hero-card-f1-title": "Pati Perahan Pertama",
+                "hero-card-f1-desc": "Mengekalkan tekstur pekat, lemak semula jadi, dan aroma harum kelapa.",
+                "hero-card-f2-title": "Kawalan Mutu Higienis",
+                "hero-card-f2-desc": "Diperas dan dibungkus dalam persekitaran sanitasi kilang yang ketat.",
+                "hero-card-f3-title": "Pembekalan Berkesinambungan",
+                "hero-card-f3-desc": "Ketersediaan stok yang konsisten bagi pengusaha restoran & katerer.",
+                "hero-card-ask": "Perlukan sebut harga pukal?",
+                "hero-card-chat": "Bincang WhatsApp"
+            },
+            en: {
+                "nav-home": "Home",
+                "nav-profile": "Company Profile",
+                "nav-products": "Product Catalogue",
+                "nav-distributor": "Distributor & Wholesale",
+                "nav-contact": "Contact Us",
+                "btn-whatsapp": "Contact WhatsApp",
+                "btn-whatsapp-officer": "Contact WhatsApp Representative",
+                "hero-badge": "Guaranteed Industrial Processing Quality",
+                "hero-title1": "Fresh Coconut Milk Supply",
+                "hero-title2": "100% Pure & Natural",
+                "hero-desc": "Specially manufactured by Usman Ali Food Manufacturing to fulfill the high standards of commercial cooking, event catering, and household needs across Malaysia.",
+                "hero-btn-catalog": "Explore Product Catalogue",
+                "hero-btn-program": "Distributor & Wholesale Program",
+                "stat-pure": "Pure Extraction",
+                "stat-no": "Zero",
+                "stat-preservatives": "Artificial Preservatives",
+                "stat-daily": "Daily",
+                "stat-fresh": "Fresh Production",
+                "hero-card-title": "Authenticity Guaranteed",
+                "hero-card-badge": "Premium Grade",
+                "hero-card-f1-title": "First Press Extraction",
+                "hero-card-f1-desc": "Retains rich texture, natural coconut oils, and fragrant aroma.",
+                "hero-card-f2-title": "Hygienic Quality Control",
+                "hero-card-f2-desc": "Extracted and packaged within strict sanitary factory environments.",
+                "hero-card-f3-title": "Continuous Supply Chain",
+                "hero-card-f3-desc": "Consistent stock availability for restaurant owners & caterers.",
+                "hero-card-ask": "Need bulk quotation?",
+                "hero-card-chat": "Chat via WhatsApp"
+            }
+        };
+
+        let currentLang = 'bm';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nData[lang] && i18nData[lang][key]) {
+                    el.innerText = i18nData[lang][key];
+                }
+            });
+
+            // Update UI State for language toggle buttons
+            const bmBtn = document.getElementById('lang-bm');
+            const enBtn = document.getElementById('lang-en');
+            const bmBtnMob = document.getElementById('lang-bm-mob');
+            const enBtnMob = document.getElementById('lang-en-mob');
+
+            if (lang === 'bm') {
+                bmBtn.className = 'px-2.5 py-1 rounded-lg transition bg-brand-900 text-white shadow-sm';
+                enBtn.className = 'px-2.5 py-1 rounded-lg transition text-slate-600 hover:text-brand-900';
+                bmBtnMob.className = 'px-2 py-1 rounded-lg transition bg-brand-900 text-white';
+                enBtnMob.className = 'px-2 py-1 rounded-lg transition text-slate-600';
+            } else {
+                enBtn.className = 'px-2.5 py-1 rounded-lg transition bg-brand-900 text-white shadow-sm';
+                bmBtn.className = 'px-2.5 py-1 rounded-lg transition text-slate-600 hover:text-brand-900';
+                enBtnMob.className = 'px-2 py-1 rounded-lg transition bg-brand-900 text-white';
+                bmBtnMob.className = 'px-2 py-1 rounded-lg transition text-slate-600';
+            }
+        }
+
+        // Navigation Switcher
+        function switchPage(pageId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('text-brand-900', 'font-bold', 'bg-emerald-50/80');
+                btn.classList.add('hover:text-brand-900', 'hover:bg-slate-100/70');
+            });
+
+            const activePage = document.getElementById('page-' + pageId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+
+            const activeNavBtn = document.getElementById('nav-' + pageId);
+            if (activeNavBtn) {
+                activeNavBtn.classList.add('text-brand-900', 'font-bold', 'bg-emerald-50/80');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // WhatsApp Modal Controls
+        function openWhatsAppModal(defaultContext) {
+            document.getElementById('whatsappModal').classList.remove('hidden');
+        }
+
+        function closeWhatsAppModal() {
+            document.getElementById('whatsappModal').classList.add('hidden');
+        }
+
+        function sendDirectWhatsApp(customText) {
+            const encodedText = encodeURIComponent(customText);
+            const waUrl = `https://wa.me/${TARGET_WHATSAPP_NUMBER}?text=${encodedText}`;
+            window.open(waUrl, '_blank');
+            closeWhatsAppModal();
+        }
+
+        function sendCustomWhatsApp() {
+            const input = document.getElementById('customWAMsg');
+            if (input.value.trim() !== '') {
+                sendDirectWhatsApp(input.value.trim());
+                input.value = '';
+            }
+        }
+
+        // Profit Calculator Logic
+        function calculateProfit() {
+            const kg = parseFloat(document.getElementById('calcKg').value) || 0;
+            const minProfitPerKg = 1.00; // RM 1.00 estimated margin
+            const maxProfitPerKg = 1.50; // RM 1.50 estimated margin
+            const daysInMonth = 30;
+
+            const minMonthly = Math.round(kg * minProfitPerKg * daysInMonth);
+            const maxMonthly = Math.round(kg * maxProfitPerKg * daysInMonth);
+
+            document.getElementById('profitOutput').innerText = `RM ${minMonthly.toLocaleString()} - RM ${maxMonthly.toLocaleString()}`;
+        }
+
+        // Distributor Form Handler
+        function handleDistributorSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('distName').value;
+            const phone = document.getElementById('distPhone').value;
+            const area = document.getElementById('distArea').value;
+            const type = document.getElementById('distType').value;
+            const volume = document.getElementById('distVolume').value;
+            const notes = document.getElementById('distNotes').value;
+
+            const text = `*PERMOHONAN EJEN / BORONG MYSANTAN*%0A%0A` +
+                         `*Nama Penuh:* ${name}%0A` +
+                         `*No. WhatsApp:* ${phone}%0A` +
+                         `*Kawasan / Daerah:* ${area}%0A` +
+                         `*Kategori:* ${type}%0A` +
+                         `*Kuantiti Anggaran:* ${volume}%0A` +
+                         `*Catatan:* ${notes}`;
+
+            const waUrl = `https://wa.me/${TARGET_WHATSAPP_NUMBER}?text=${text}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // General Contact Form Handler
+        function handleGeneralContact(event) {
+            event.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const info = document.getElementById('contactInfo').value;
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value;
+
+            const text = `*MESEJ PERTANYAAN LAMAN WEB*%0A%0A` +
+                         `*Nama:* ${name}%0A` +
+                         `*Hubungi:* ${info}%0A` +
+                         `*Subjek:* ${subject}%0A` +
+                         `*Mesej:* ${message}`;
+
+            const waUrl = `https://wa.me/${TARGET_WHATSAPP_NUMBER}?text=${text}`;
+            window.open(waUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
