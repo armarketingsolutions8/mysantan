@@ -76,11 +76,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 
-                <!-- Corporate Branding -->
+                <!-- Corporate Branding with Image Logo -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-900 to-brand-dark text-brand-goldlight flex items-center justify-center font-black text-2xl shadow-md border border-emerald-700/50">
-                        M
-                    </div>
+                    <!-- Image Logo (Uses logo.png or fallback if image is missing) -->
+                    <img src="logo.png" 
+                         alt="Usman Ali Food Manufacturing Logo" 
+                         class="w-12 h-12 object-contain rounded-full shadow-sm"
+                         onerror="this.src='https://placehold.co/100x100/064E3B/FFF?text=MySantan';"/>
                     <div>
                         <span class="font-heading font-black text-2xl text-brand-900 tracking-tight leading-none block">MySantan</span>
                         <span class="text-[10px] font-bold text-slate-500 tracking-wider uppercase block mt-0.5">Usman Ali Food Manufacturing</span>
